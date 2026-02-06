@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 // 再帰関数：給料が固定給を超えるまで処理を繰り返す
 int Recursive(int kyuuryou, int zikan, int koteikyu) {
     if (kyuuryou >= koteikyu) {
