@@ -1,30 +1,21 @@
-#include "Circle.h"
-#include "IShape.h"
-#include "Rectangle.h"
-#include <stdio.h>
+#include <iostream>
+#include <thread>
 
-int main(void) {
+using namespace std;
 
-    IShape* shape[2]; // 図形クラスのポインタ型配列
+void PrintThread(uint32_t num) { cout << "thread" << num << endl; }
 
-    shape[0] = new Circle;    // 円クラス
-    shape[1] = new Rectangle; // 四角形クラス
+int main() {
 
-    printf("円の半径:4\n短形の底辺:2\n短形の高さ:3\n");
+	// マルチスレッドではある
+	thread t1(PrintThread, 1);
+	t1.join();
 
-    // 面積を計算
-    for (int i = 0; i < 2; i++)
-        shape[i]->Size();
+	thread t2(PrintThread, 2);
+	t2.join();
 
-    printf("\n");
+	thread t3(PrintThread, 3);
+	t3.join();
 
-    // 面積を画面に表示
-    for (int i = 0; i < 2; i++)
-        shape[i]->Draw();
-
-    // メモリ解放（重要）
-    for (int i = 0; i < 2; i++)
-        delete shape[i];
-
-    return 0;
+	return 0;
 }
